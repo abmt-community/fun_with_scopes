@@ -1,0 +1,16 @@
+{
+  "model": "cube",
+  "runtime": "live",
+  "runtime_configs": {
+    "live": {
+      "cpp_flags": "-std=c++17 -O3",
+      "ld_flags": "",
+      "inc_path": [
+      ],
+      "ld_path": [
+      ],
+      "libs": [
+      ]
+    }
+  }
+}

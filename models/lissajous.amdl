@@ -1,0 +1,418 @@
+{
+  "nodes": [
+    {
+      "name": "sin_x",
+      "type": "func",
+      "cfg": {
+        "func": "sin",
+        "prj": "math"
+      },
+      "pos": {
+        "x": 63,
+        "y": -406
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "ang": {
+          "node": "expr_2",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "ang": "0"
+      }
+    },
+    {
+      "name": "sin_y",
+      "type": "func",
+      "cfg": {
+        "func": "sin",
+        "prj": "math"
+      },
+      "pos": {
+        "x": 60,
+        "y": 70
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "ang": {
+          "node": "expr_1",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "ang": "0"
+      }
+    },
+    {
+      "name": "expr",
+      "type": "expression",
+      "cfg": {
+        "function": "a+speed",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": -522,
+        "y": -187
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "delay",
+          "pin": "out"
+        },
+        "speed": {
+          "node": "speed",
+          "pin": "value"
+        }
+      },
+      "default_values": {
+        "a": "",
+        "speed": ""
+      }
+    },
+    {
+      "name": "delay",
+      "type": "base",
+      "cfg": {
+        "node": "delay",
+        "data_type": "double",
+        "start_value": "0",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -504,
+        "y": -19
+      },
+      "rotate": true,
+      "comment_out": false,
+      "inputs": {
+        "in": {
+          "node": "expr",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "in": ""
+      }
+    },
+    {
+      "name": "expr_1",
+      "type": "expression",
+      "cfg": {
+        "function": "a*f_y + p_y",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": -225,
+        "y": 70
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "expr",
+          "pin": "out"
+        },
+        "f_y": {
+          "node": "f_y",
+          "pin": "value"
+        },
+        "p_y": {
+          "node": "p_y",
+          "pin": "value"
+        }
+      },
+      "default_values": {
+        "a": "",
+        "f_y": "",
+        "p_y": ""
+      }
+    },
+    {
+      "name": "norm_x",
+      "type": "expression",
+      "cfg": {
+        "function": "(a+1) / 2.0 *0.8",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": 293,
+        "y": -406
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "sin_x",
+          "pin": "sin"
+        }
+      },
+      "default_values": {
+        "a": ""
+      }
+    },
+    {
+      "name": "norm_y",
+      "type": "expression",
+      "cfg": {
+        "function": "(a+1) / 2.0 *0.8",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": 291,
+        "y": 70
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "sin_y",
+          "pin": "sin"
+        }
+      },
+      "default_values": {
+        "a": ""
+      }
+    },
+    {
+      "name": "speed",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "0.01",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -829,
+        "y": -171
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "f_x",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "1",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -813,
+        "y": -492
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "f_y",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "2",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -823,
+        "y": 83
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "expr_2",
+      "type": "expression",
+      "cfg": {
+        "function": "a*f_x + p_x",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": -246,
+        "y": -408
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "expr",
+          "pin": "out"
+        },
+        "f_x": {
+          "node": "f_x",
+          "pin": "value"
+        },
+        "p_x": {
+          "node": "p_x",
+          "pin": "value"
+        }
+      },
+      "default_values": {
+        "a": "",
+        "f_x": "",
+        "p_x": ""
+      }
+    },
+    {
+      "name": "rt_x",
+      "type": "base",
+      "cfg": {
+        "node": "rt",
+        "data_type": "double",
+        "start_value": 0,
+        "type_header": ""
+      },
+      "pos": {
+        "x": 633,
+        "y": -77
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "in": {
+          "node": "norm_x",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "in": ""
+      }
+    },
+    {
+      "name": "rt_y",
+      "type": "base",
+      "cfg": {
+        "node": "rt",
+        "data_type": "double",
+        "start_value": 0,
+        "type_header": ""
+      },
+      "pos": {
+        "x": 622,
+        "y": 57
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "in": {
+          "node": "norm_y",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "in": ""
+      }
+    },
+    {
+      "name": "p_x",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "0",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -815,
+        "y": -368
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "p_y",
+      "type": "base",
+      "cfg": {
+        "node": "parameter",
+        "data_type": "double",
+        "default": "0",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -826,
+        "y": 215
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "i2c_dac",
+      "type": "class",
+      "cfg": {
+        "class": "i2c_dac",
+        "prj": "fun_with_scopes"
+      },
+      "pos": {
+        "x": 752,
+        "y": -361
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "x": {
+          "node": "norm_x",
+          "pin": "out"
+        },
+        "y": {
+          "node": "norm_y",
+          "pin": "out"
+        }
+      },
+      "raster": "1ms",
+      "default_values": {
+        "x": "",
+        "y": ""
+      }
+    },
+    {
+      "name": "virtual_scope",
+      "type": "class",
+      "cfg": {
+        "class": "virtual_scope",
+        "prj": "fun_with_scopes",
+        "filter": 0.99
+      },
+      "pos": {
+        "x": 912,
+        "y": -14
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "x": {
+          "node": "rt_x",
+          "pin": "out"
+        },
+        "y": {
+          "node": "rt_y",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "x": "",
+        "y": ""
+      }
+    }
+  ]
+}

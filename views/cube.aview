@@ -1,0 +1,29 @@
+{
+  "type": "list",
+  "elements": [
+    {
+      "type": "list_hz",
+      "elements": [
+        {
+          "type": "3d",
+          "antialias": false,
+          "enable_fxaa": false,
+          "cam": "{\"px\":0.162,\"py\":0.921,\"pz\":2.071,\"tx\":0,\"ty\":0,\"tz\":-1}",
+          "signal": "expr.out",
+          "width": 724,
+          "height": 235
+        },
+        {
+          "type": "image",
+          "signal": "virtual_scope.img",
+          "width": 247,
+          "height": 235
+        }
+      ],
+      "width": 1517,
+      "height": 235
+    }
+  ],
+  "width": 1517,
+  "height": 852
+}

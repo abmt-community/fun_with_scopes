@@ -1,0 +1,417 @@
+{
+  "nodes": [
+    {
+      "name": "expr",
+      "type": "expression",
+      "cfg": {
+        "function": "a+b+c",
+        "output_name": "out",
+        "output_type": "auto",
+        "type_header": "",
+        "disable_output": false
+      },
+      "pos": {
+        "x": -263,
+        "y": -585
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "a": {
+          "node": "cube",
+          "pin": "out"
+        },
+        "b": {
+          "node": "grid_xz",
+          "pin": "sc"
+        },
+        "c": {
+          "node": "axis",
+          "pin": "sc"
+        }
+      },
+      "default_values": {
+        "a": "",
+        "b": "",
+        "c": ""
+      }
+    },
+    {
+      "name": "grid_xz",
+      "type": "class",
+      "cfg": {
+        "class": "grid_xz",
+        "prj": "scene3d",
+        "step_size": 1,
+        "steps_x": 10,
+        "steps_z": 10,
+        "y": -0.001
+      },
+      "pos": {
+        "x": -565,
+        "y": -486
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "axis",
+      "type": "class",
+      "cfg": {
+        "class": "axis",
+        "prj": "scene3d",
+        "len": 1
+      },
+      "pos": {
+        "x": -526,
+        "y": -381
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "rt",
+      "type": "base",
+      "cfg": {
+        "node": "rt",
+        "data_type": "std::vector<abmt::vec2>",
+        "start_value": "{0,0}",
+        "type_header": ""
+      },
+      "pos": {
+        "x": -49,
+        "y": -343
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "in": {
+          "node": "scene_line_to_2d",
+          "pin": "line"
+        }
+      },
+      "default_values": {
+        "in": ""
+      }
+    },
+    {
+      "name": "cube",
+      "type": "base",
+      "cfg": {
+        "node": "subsystem",
+        "nodes": [
+          {
+            "name": "move",
+            "type": "class",
+            "cfg": {
+              "class": "move",
+              "prj": "scene3d"
+            },
+            "pos": {
+              "x": 679,
+              "y": 14
+            },
+            "rotate": false,
+            "comment_out": false,
+            "default_values": {
+              "x": "-0.5",
+              "y": "-0.5",
+              "z": "-0.5"
+            }
+          },
+          {
+            "name": "expr_1",
+            "type": "expression",
+            "cfg": {
+              "function": "rot*move*scene",
+              "output_name": "out",
+              "output_type": "auto",
+              "type_header": "",
+              "disable_output": false
+            },
+            "pos": {
+              "x": 1031,
+              "y": 20
+            },
+            "rotate": false,
+            "comment_out": false,
+            "inputs": {
+              "move": {
+                "node": "move",
+                "pin": "pose"
+              },
+              "rot": {
+                "node": "rotate",
+                "pin": "pose"
+              },
+              "scene": {
+                "node": "make_cube",
+                "pin": "scene"
+              }
+            },
+            "default_values": {
+              "move": "",
+              "rot": "",
+              "scene": ""
+            }
+          },
+          {
+            "name": "rotate",
+            "type": "class",
+            "cfg": {
+              "class": "rotate",
+              "prj": "scene3d"
+            },
+            "pos": {
+              "x": 681,
+              "y": 141
+            },
+            "rotate": false,
+            "comment_out": false,
+            "inputs": {
+              "ang": {
+                "node": "expr_2",
+                "pin": "out"
+              }
+            },
+            "default_values": {
+              "ang": "20",
+              "x": "1",
+              "y": "0.5",
+              "z": "0.5"
+            }
+          },
+          {
+            "name": "delay",
+            "type": "base",
+            "cfg": {
+              "node": "delay",
+              "data_type": "double",
+              "start_value": "0",
+              "type_header": ""
+            },
+            "pos": {
+              "x": 251,
+              "y": 211
+            },
+            "rotate": true,
+            "comment_out": false,
+            "inputs": {
+              "in": {
+                "node": "expr_2",
+                "pin": "out"
+              }
+            },
+            "default_values": {
+              "in": ""
+            }
+          },
+          {
+            "name": "expr_2",
+            "type": "expression",
+            "cfg": {
+              "function": "a+0.01",
+              "output_name": "out",
+              "output_type": "auto",
+              "type_header": "",
+              "disable_output": false
+            },
+            "pos": {
+              "x": 250,
+              "y": 0
+            },
+            "rotate": false,
+            "comment_out": false,
+            "inputs": {
+              "a": {
+                "node": "delay",
+                "pin": "out"
+              }
+            },
+            "default_values": {
+              "a": ""
+            }
+          },
+          {
+            "name": "out",
+            "type": "base",
+            "cfg": {
+              "node": "output",
+              "name": "out"
+            },
+            "pos": {
+              "x": 1456,
+              "y": 38
+            },
+            "rotate": false,
+            "comment_out": false,
+            "inputs": {
+              "in": {
+                "node": "expr_1",
+                "pin": "out"
+              }
+            },
+            "default_values": {
+              "in": ""
+            }
+          },
+          {
+            "name": "make_cube",
+            "type": "class",
+            "cfg": {
+              "class": "make_cube",
+              "prj": "fun_with_scopes"
+            },
+            "pos": {
+              "x": 614,
+              "y": 327
+            },
+            "rotate": false,
+            "comment_out": false
+          }
+        ],
+        "view": {
+          "scale": 0.5,
+          "trans": {
+            "x": 25,
+            "y": 35
+          }
+        }
+      },
+      "pos": {
+        "x": -886,
+        "y": -589
+      },
+      "rotate": false,
+      "comment_out": false
+    },
+    {
+      "name": "scene_line_to_2d",
+      "type": "class",
+      "cfg": {
+        "class": "scene_line_to_2d",
+        "prj": "fun_with_scopes",
+        "cam_z": -2.5
+      },
+      "pos": {
+        "x": -641,
+        "y": -215
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "scene": {
+          "node": "cube",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "scene": ""
+      }
+    },
+    {
+      "name": "draw_line_2",
+      "type": "class",
+      "cfg": {
+        "class": "draw_line",
+        "prj": "fun_with_scopes"
+      },
+      "pos": {
+        "x": -52,
+        "y": -215
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "line": {
+          "node": "scene_line_to_2d",
+          "pin": "line"
+        }
+      },
+      "default_values": {
+        "line": ""
+      }
+    },
+    {
+      "name": "draw_line_1",
+      "type": "class",
+      "cfg": {
+        "class": "draw_line",
+        "prj": "fun_with_scopes"
+      },
+      "pos": {
+        "x": 197,
+        "y": -360
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "line": {
+          "node": "rt",
+          "pin": "out"
+        }
+      },
+      "default_values": {
+        "line": ""
+      }
+    },
+    {
+      "name": "i2c_dac",
+      "type": "class",
+      "cfg": {
+        "class": "i2c_dac",
+        "prj": "fun_with_scopes"
+      },
+      "pos": {
+        "x": 576,
+        "y": -345
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "x": {
+          "node": "draw_line_1",
+          "pin": "x"
+        },
+        "y": {
+          "node": "draw_line_1",
+          "pin": "y"
+        }
+      },
+      "raster": "1ms",
+      "default_values": {
+        "x": "",
+        "y": ""
+      }
+    },
+    {
+      "name": "virtual_scope",
+      "type": "class",
+      "cfg": {
+        "class": "virtual_scope",
+        "prj": "fun_with_scopes",
+        "filter": 0.9
+      },
+      "pos": {
+        "x": 507,
+        "y": -202
+      },
+      "rotate": false,
+      "comment_out": false,
+      "inputs": {
+        "x": {
+          "node": "draw_line_2",
+          "pin": "x"
+        },
+        "y": {
+          "node": "draw_line_2",
+          "pin": "y"
+        }
+      },
+      "default_values": {
+        "x": "",
+        "y": ""
+      }
+    }
+  ]
+}
